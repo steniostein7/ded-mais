@@ -17,94 +17,80 @@
         header { background: var(--primary); color: white; padding: 60px 20px; text-align: center; border-bottom: 8px solid var(--accent); }
         .container { max-width: 800px; margin: -40px auto 40px; background: white; padding: 40px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); text-align: center; }
         
-        h1 { font-size: 2.5em; margin-bottom: 10px; color: #333; }
-        .tagline { font-size: 1.1em; color: #666; margin-bottom: 30px; }
-        
-        .download-box { background: #fff5f2; border: 2px dashed var(--accent); padding: 30px; border-radius: 15px; margin-bottom: 40px; }
-        .btn-download { display: inline-block; background: var(--accent); color: white; padding: 18px 35px; text-decoration: none; border-radius: 50px; font-weight: 700; font-size: 1.2em; transition: 0.3s; box-shadow: 0 4px 15px rgba(255,138,101,0.4); border: none; cursor: pointer; }
-        .btn-download:hover { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(255,138,101,0.6); }
-        
-        .features { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 30px 0; text-align: left; }
-        .feature-item { padding: 15px; border-left: 4px solid var(--primary); background: #fdfdfd; border-radius: 0 8px 8px 0; }
+        h1 { font-size: 2.2em; margin-bottom: 10px; color: #333; }
+        .tagline { font-size: 1.05em; color: #666; margin-bottom: 30px; }
 
-        .donation-section { background: var(--primary); color: white; padding: 40px; border-radius: 15px; margin-top: 40px; }
-        .donation-section h2 { margin-bottom: 15px; color: var(--accent); }
+        /* SEÇÃO DE DOAÇÃO PRIMEIRO */
+        .donation-header { background: #fef4f1; border: 1px solid #ffe0d6; padding: 25px; border-radius: 15px; margin-bottom: 30px; }
+        .donation-header h2 { color: var(--primary); font-size: 1.4em; margin-bottom: 10px; }
+        .donation-header p { font-size: 0.95em; margin-bottom: 15px; color: #555; }
         
-        .pix-box { background: rgba(255,255,255,0.1); padding: 20px; border-radius: 10px; margin: 20px 0; border: 1px solid rgba(255,255,255,0.2); }
-        .pix-container { display: flex; align-items: center; justify-content: center; gap: 10px; background: rgba(255,255,255,0.2); padding: 10px; border-radius: 8px; margin-top: 10px; }
-        .pix-key { font-weight: bold; font-size: 0.9em; word-break: break-all; color: #fff; }
+        .pix-container { display: flex; align-items: center; justify-content: center; gap: 10px; background: white; padding: 10px; border: 1px solid var(--accent); border-radius: 8px; max-width: 400px; margin: 0 auto; }
+        .pix-key { font-weight: bold; font-size: 0.85em; word-break: break-all; color: var(--primary); }
         
-        .btn-copy { background: var(--accent); border: none; color: white; padding: 8px 15px; border-radius: 5px; cursor: pointer; font-weight: bold; font-family: 'Poppins'; transition: 0.2s; }
+        .btn-copy { background: var(--accent); border: none; color: white; padding: 8px 15px; border-radius: 5px; cursor: pointer; font-weight: bold; font-family: 'Poppins'; transition: 0.2s; font-size: 0.8em; }
         .btn-copy:hover { background: #e67a5a; }
+        #copyStatus { font-size: 0.85em; color: var(--accent); height: 20px; margin-top: 8px; font-weight: 600; }
 
-        #copyStatus { font-size: 0.9em; color: #FFCCBC; height: 24px; margin-top: 10px; font-weight: 600; }
+        /* ÁREA DE DOWNLOAD */
+        .download-box { background: var(--primary); color: white; padding: 35px; border-radius: 15px; margin-top: 20px; box-shadow: 0 5px 15px rgba(107, 59, 111, 0.3); }
+        .btn-download { display: inline-block; background: var(--accent); color: white; padding: 18px 40px; text-decoration: none; border-radius: 50px; font-weight: 700; font-size: 1.2em; transition: 0.3s; box-shadow: 0 4px 15px rgba(0,0,0,0.2); border: none; margin-top: 15px; }
+        .btn-download:hover { transform: scale(1.05); background: #ff9d7f; }
 
-        footer { text-align: center; padding: 40px; font-size: 0.85em; color: #888; }
-        
-        @media (max-width: 600px) { 
-            .features { grid-template-columns: 1fr; }
-            .container { margin: -20px 15px 40px; padding: 25px; }
-            h1 { font-size: 1.8em; }
-        }
+        .features { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin: 30px 0; text-align: left; font-size: 0.9em; }
+        .feature-item { padding: 12px; border-left: 3px solid var(--accent); background: #fafafa; }
+
+        footer { text-align: center; padding: 40px; font-size: 0.8em; color: #888; }
+        @media (max-width: 600px) { .features { grid-template-columns: 1fr; } .container { padding: 20px; } }
     </style>
 </head>
 <body>
 
 <header>
-    <p style="font-weight: bold; text-transform: uppercase; letter-spacing: 2px; font-size: 0.7em;">TechBox Academy apresenta</p>
+    <p style="font-weight: bold; text-transform: uppercase; letter-spacing: 2px; font-size: 0.7em;">TechBox Academy</p>
 </header>
 
 <div class="container">
     <h1>DED+ Mobile</h1>
-    <p class="tagline">O Diário Escolar Digital, agora na palma da sua mão com agilidade total.</p>
+    <p class="tagline">Simplificando a rotina do professor de Minas Gerais.</p>
+
+    <div class="donation-header">
+        <h2>☕ Apoie este Projeto</h2>
+        <p>Este aplicativo é fruto de um trabalho independente para ajudar nossa classe. Se ele for útil para você, considere uma pequena doação para manter o domínio e o servidor ativos.</p>
+        
+        <div class="pix-container">
+            <span id="pixKey" class="pix-key">00020101021126580014br.gov.bcb.pix0136fef424b2-cc34-443d-9070-7d375b47f0055204000053039865802BR5917STENIO C F GARCIA6010CAMPO BELO62070503***6304D967</span>
+            <button onclick="copyPix()" class="btn-copy">Copiar PIX</button>
+        </div>
+        <p id="copyStatus"></p>
+    </div>
 
     <div class="features">
-        <div class="feature-item">🚀 <b>Tela Cheia:</b> Ganhe espaço para lançar notas sem distrações.</div>
-        <div class="feature-item">🔐 <b>Login Rápido:</b> Otimizado para facilitar o acesso diário.</div>
-        <div class="feature-item">🔄 <b>Botão Recarregar:</b> Destrave o sistema rapidamente se necessário.</div>
-        <div class="feature-item">📱 <b>Leveza:</b> Apenas 5.6MB. Não ocupa espaço no seu celular.</div>
+        <div class="feature-item">🚀 <b>Foco Total:</b> Sem barras laterais ou anúncios.</div>
+        <div class="feature-item">🔐 <b>Privacidade:</b> Navegação direta no site oficial.</div>
+        <div class="feature-item">📱 <b>Leveza:</b> Instalação rápida (5.6MB).</div>
+        <div class="feature-item">🔄 <b>Agilidade:</b> Recarregamento rápido do sistema.</div>
     </div>
 
     <div class="download-box">
-        <p style="margin-bottom: 15px; font-weight: bold; color: var(--primary);">Versão estável: 26.01.06.2</p>
-        <a href="DED_Mais.apk" class="btn-download">BAIXAR APLICATIVO (APK)</a>
-        <p style="margin-top: 15px; font-size: 0.75em; color: #999;">Requer Android 5.0 ou superior para funcionar.</p>
-    </div>
-
-    <div class="donation-section">
-        <h2>☕ Valorize este projeto</h2>
-        <p>Este app foi criado de forma independente para economizar o tempo de nós, professores. Se ele te ajuda, considere apoiar a manutenção do projeto.</p>
-        
-        <div class="pix-box">
-            <p style="font-size: 0.9em;">Chave PIX (Copia e Cola):</p>
-            <div class="pix-container">
-                <span id="pixKey" class="pix-key">00020101021126580014br.gov.bcb.pix0136fef424b2-cc34-443d-9070-7d375b47f0055204000053039865802BR5917STENIO C F GARCIA6010CAMPO BELO62070503***6304D967</span>
-                <button onclick="copyPix()" class="btn-copy">Copiar</button>
-            </div>
-            <p id="copyStatus"></p>
-        </div>
-        <p style="font-size: 0.8em; opacity: 0.9;">Qualquer contribuição ajuda a manter o domínio e a hospedagem ativos!</p>
+        <p style="font-weight: bold; opacity: 0.9;">Tudo pronto para começar?</p>
+        <a href="DED_Mais.apk" class="btn-download">BAIXAR APP GRATUITO</a>
+        <p style="margin-top: 15px; font-size: 0.7em; opacity: 0.8;">Versão: 26.01.06.2 | Android 5.0+</p>
     </div>
 </div>
 
 <footer>
-    <p><b>Aviso Legal:</b> Este aplicativo é uma ferramenta independente e não possui vínculo oficial com a Secretaria de Estado de Educação de Minas Gerais (SEE-MG). O app atua como um navegador seguro para o site oficial.</p>
-    <p style="margin-top:15px;">&copy; 2026 TechBox Academy - Desenvolvido para facilitar a vida do professor.</p>
+    <p><b>Aviso Legal:</b> Ferramenta independente. Não oficial da SEE-MG. Os dados de login são processados apenas pelos servidores governamentais.</p>
+    <p style="margin-top:15px;">&copy; 2026 TechBox Academy</p>
 </footer>
 
 <script>
     function copyPix() {
         const pixText = document.getElementById("pixKey").innerText;
-        
         navigator.clipboard.writeText(pixText).then(() => {
             const status = document.getElementById("copyStatus");
-            status.innerText = "✅ Chave copiada! Agora é só colar no seu banco.";
-            
-            setTimeout(() => {
-                status.innerText = "";
-            }, 4000);
-        }).catch(err => {
-            alert("Erro ao copiar. Por favor, selecione o texto manualmente.");
+            status.innerText = "✅ Chave copiada! Muito obrigado pelo apoio.";
+            setTimeout(() => { status.innerText = ""; }, 4000);
         });
     }
 </script>
