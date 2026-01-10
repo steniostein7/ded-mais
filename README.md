@@ -20,6 +20,7 @@ Como este app não está na Play Store, siga estes passos:
 
 ## ☕ Apoie o Projeto
 Desenvolvido com carinho para ajudar a rotina dos professores. Se quiser apoiar a manutenção do domínio e hospedagem, você pode enviar um PIX ou doação voluntária.
+Acesse ded.techboxacademy.com.br para mais informações
 
 ---
-Desenvolvido por **TechBox Academy** 🎓
+Desenvolvido por **Techbox Academy** 🎓
