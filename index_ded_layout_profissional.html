@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DED+ Mobile | ProfessorMG</title>
+    <meta name="description" content="DED+ Mobile: acesso otimizado ao Diário Escolar Digital para professores de Minas Gerais. Projeto independente do ProfessorMG.">
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+        :root {
+            --primary: #6B3B6F;
+            --primary-dark: #4f2854;
+            --primary-soft: #f4edf6;
+            --accent: #FF8A65;
+            --accent-dark: #ee704b;
+            --bg: #f7f2f8;
+            --card: #ffffff;
+            --text: #2f2f35;
+            --muted: #6f6872;
+            --line: #eee3ef;
+            --green: #2e7d32;
+            --blue: #4A90E2;
+            --shadow: 0 22px 60px rgba(65, 38, 68, 0.12);
+            --radius: 24px;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background:
+                radial-gradient(circle at top left, rgba(107, 59, 111, .16), transparent 34%),
+                radial-gradient(circle at top right, rgba(255, 138, 101, .16), transparent 32%),
+                var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        a { color: inherit; }
+
+        .page-shell {
+            max-width: 1120px;
+            margin: 0 auto;
+            padding: 22px 18px 0;
+        }
+
+        .topbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+            background: rgba(255,255,255,.78);
+            border: 1px solid rgba(107,59,111,.10);
+            backdrop-filter: blur(12px);
+            border-radius: 999px;
+            padding: 12px 16px;
+            box-shadow: 0 10px 30px rgba(65,38,68,.08);
+            position: sticky;
+            top: 12px;
+            z-index: 20;
+        }
+
+        .brand {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: var(--primary);
+            font-weight: 800;
+            letter-spacing: -.02em;
+        }
+
+        .brand-mark {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            display: grid;
+            place-items: center;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+            box-shadow: 0 10px 18px rgba(107,59,111,.22);
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--primary-dark);
+            font-size: .88rem;
+            font-weight: 700;
+            padding: 9px 12px;
+            border-radius: 999px;
+            transition: .2s ease;
+        }
+
+        .nav-link:hover { background: var(--primary-soft); }
+
+        .hero-card {
+            margin-top: 24px;
+            border-radius: 34px;
+            overflow: hidden;
+            background: #fff;
+            border: 1px solid rgba(107,59,111,.10);
+            box-shadow: var(--shadow);
+            display: grid;
+            grid-template-columns: minmax(0, 1.08fr) minmax(300px, .92fr);
+            min-height: 520px;
+        }
+
+        .hero-copy {
+            padding: clamp(32px, 5vw, 58px);
+            background:
+                linear-gradient(135deg, rgba(107,59,111,.08), rgba(255,138,101,.08)),
+                #fff;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .kicker {
+            width: fit-content;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--primary);
+            background: var(--primary-soft);
+            border: 1px solid rgba(107,59,111,.12);
+            padding: 8px 13px;
+            border-radius: 999px;
+            font-size: .82rem;
+            font-weight: 800;
+            margin-bottom: 18px;
+        }
+
+        .hero-copy h1 {
+            font-size: clamp(2.3rem, 6vw, 4.4rem);
+            line-height: .95;
+            letter-spacing: -.07em;
+            color: #241626;
+            margin-bottom: 18px;
+        }
+
+        .hero-copy h1 span { color: var(--primary); }
+
+        .hero-copy p {
+            color: var(--muted);
+            font-size: 1.03rem;
+            max-width: 610px;
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 26px;
+        }
+
+        .btn-primary,
+        .btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            border-radius: 999px;
+            text-decoration: none;
+            font-weight: 800;
+            padding: 14px 20px;
+            transition: .2s ease;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            box-shadow: 0 15px 28px rgba(107,59,111,.27);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: var(--primary);
+            border: 1.5px solid var(--line);
+        }
+
+        .btn-primary:hover,
+        .btn-secondary:hover {
+            transform: translateY(-2px);
+        }
+
+        .hero-visual {
+            position: relative;
+            min-height: 420px;
+            background: linear-gradient(155deg, var(--primary) 0%, #87528b 58%, var(--accent) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 38px;
+            overflow: hidden;
+        }
+
+        .hero-visual::before,
+        .hero-visual::after {
+            content: '';
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255,255,255,.12);
+        }
+
+        .hero-visual::before {
+            width: 240px;
+            height: 240px;
+            top: -70px;
+            right: -70px;
+        }
+
+        .hero-visual::after {
+            width: 170px;
+            height: 170px;
+            bottom: -50px;
+            left: -50px;
+        }
+
+        .phone-frame {
+            position: relative;
+            z-index: 2;
+            width: min(310px, 86%);
+            border-radius: 34px;
+            padding: 12px;
+            background: rgba(255,255,255,.22);
+            border: 1px solid rgba(255,255,255,.28);
+            box-shadow: 0 24px 55px rgba(24,11,27,.34);
+            transform: rotate(2deg);
+        }
+
+        .phone-frame img {
+            width: 100%;
+            display: block;
+            border-radius: 26px;
+            background: #fff;
+            border: 1px solid rgba(255,255,255,.22);
+        }
+
+        .floating-note {
+            position: absolute;
+            z-index: 3;
+            left: 24px;
+            bottom: 28px;
+            background: rgba(255,255,255,.92);
+            color: var(--primary-dark);
+            border-radius: 18px;
+            padding: 14px 16px;
+            max-width: 260px;
+            box-shadow: 0 14px 30px rgba(0,0,0,.14);
+            font-size: .86rem;
+            font-weight: 700;
+        }
+
+        .section {
+            margin-top: 34px;
+        }
+
+        .section-head {
+            text-align: center;
+            max-width: 720px;
+            margin: 0 auto 22px;
+        }
+
+        .section-head h2 {
+            color: var(--primary);
+            font-size: clamp(1.6rem, 3vw, 2.1rem);
+            letter-spacing: -.04em;
+            margin-bottom: 8px;
+        }
+
+        .section-head p { color: var(--muted); }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 16px;
+        }
+
+        .feature-card {
+            background: rgba(255,255,255,.92);
+            border: 1px solid rgba(107,59,111,.10);
+            border-radius: 22px;
+            padding: 22px;
+            box-shadow: 0 12px 28px rgba(65,38,68,.07);
+            transition: .2s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 18px 38px rgba(65,38,68,.10);
+        }
+
+        .feature-icon {
+            width: 52px;
+            height: 52px;
+            border-radius: 16px;
+            display: grid;
+            place-items: center;
+            background: var(--primary-soft);
+            color: var(--primary);
+            font-size: 1.35rem;
+            margin-bottom: 14px;
+        }
+
+        .feature-card h3 {
+            color: #241626;
+            font-size: 1rem;
+            margin-bottom: 6px;
+        }
+
+        .feature-card p {
+            color: var(--muted);
+            font-size: .88rem;
+        }
+
+        .download-cta {
+            background: linear-gradient(135deg, var(--primary) 0%, #7f4b83 54%, var(--accent) 100%);
+            color: white;
+            border-radius: 28px;
+            padding: clamp(28px, 5vw, 42px);
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 20px;
+            align-items: center;
+            box-shadow: 0 18px 42px rgba(107,59,111,.20);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .download-cta::before {
+            content: '';
+            position: absolute;
+            width: 210px;
+            height: 210px;
+            border-radius: 50%;
+            right: -70px;
+            top: -70px;
+            background: rgba(255,255,255,.12);
+        }
+
+        .download-cta h2 {
+            font-size: clamp(1.45rem, 3vw, 2.05rem);
+            line-height: 1.15;
+            letter-spacing: -.04em;
+            margin-bottom: 8px;
+        }
+
+        .download-cta p { color: rgba(255,255,255,.88); }
+
+        .download-meta {
+            margin-top: 12px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            border-radius: 999px;
+            background: rgba(255,255,255,.14);
+            border: 1px solid rgba(255,255,255,.20);
+            padding: 7px 10px;
+            font-size: .78rem;
+            font-weight: 700;
+        }
+
+        .btn-download {
+            position: relative;
+            z-index: 2;
+            background: white;
+            color: var(--primary);
+            text-decoration: none;
+            padding: 16px 24px;
+            border-radius: 999px;
+            font-weight: 900;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 14px 28px rgba(0,0,0,.18);
+            transition: .2s ease;
+            white-space: nowrap;
+        }
+
+        .btn-download:hover { transform: translateY(-2px); }
+
+        .banners-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .banner-tool {
+            background: #fff;
+            border: 1px solid rgba(107,59,111,.10);
+            border-radius: 22px;
+            padding: 22px;
+            text-decoration: none;
+            display: grid;
+            grid-template-columns: auto 1fr auto;
+            align-items: center;
+            gap: 16px;
+            box-shadow: 0 12px 28px rgba(65,38,68,.07);
+            transition: .2s ease;
+        }
+
+        .banner-tool:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 18px 38px rgba(65,38,68,.11);
+        }
+
+        .banner-icon {
+            width: 58px;
+            height: 58px;
+            border-radius: 18px;
+            display: grid;
+            place-items: center;
+            font-size: 1.45rem;
+            color: white;
+        }
+
+        .banner-aulas .banner-icon { background: linear-gradient(135deg, var(--primary), var(--accent)); }
+        .banner-planos .banner-icon { background: linear-gradient(135deg, var(--blue), var(--primary)); }
+
+        .banner-info h3 {
+            color: #241626;
+            font-size: 1.05rem;
+            margin-bottom: 4px;
+        }
+
+        .banner-info p {
+            color: var(--muted);
+            font-size: .86rem;
+            line-height: 1.42;
+        }
+
+        .banner-action {
+            color: var(--primary);
+            font-weight: 900;
+            white-space: nowrap;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .pix-section {
+            background: rgba(255,255,255,.94);
+            border: 1px dashed rgba(107,59,111,.24);
+            border-radius: 24px;
+            padding: 28px;
+            text-align: center;
+            box-shadow: 0 12px 28px rgba(65,38,68,.06);
+        }
+
+        .coffee-icon {
+            width: 54px;
+            height: 54px;
+            margin: 0 auto 12px;
+            display: grid;
+            place-items: center;
+            border-radius: 16px;
+            background: #fff5ed;
+            color: #7b4a2a;
+            font-size: 1.45rem;
+        }
+
+        .pix-section h3 {
+            color: var(--primary);
+            font-size: 1.25rem;
+            margin-bottom: 8px;
+        }
+
+        .pix-section p {
+            color: var(--muted);
+            font-size: .92rem;
+            max-width: 720px;
+            margin: 0 auto;
+        }
+
+        .pix-container {
+            margin-top: 16px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .pix-box {
+            width: 100%;
+            max-width: 760px;
+            background: #fbfafc;
+            border: 1px solid var(--line);
+            color: var(--primary);
+            border-radius: 14px;
+            padding: 12px 14px;
+            font-family: monospace;
+            font-weight: 800;
+            font-size: .8rem;
+            word-break: break-all;
+        }
+
+        .btn-copy {
+            border: none;
+            background: linear-gradient(135deg, var(--green), #1f6122);
+            color: white;
+            border-radius: 999px;
+            padding: 12px 18px;
+            font-family: inherit;
+            font-weight: 800;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: .2s ease;
+        }
+
+        .btn-copy:hover { transform: translateY(-1px); }
+        .btn-copy.copied { background: linear-gradient(135deg, var(--primary), var(--primary-dark)); }
+
+        footer {
+            text-align: center;
+            padding: 40px 20px 56px;
+            color: #8b8290;
+            font-size: .84rem;
+        }
+
+        .social-links {
+            margin-bottom: 16px;
+            display: flex;
+            justify-content: center;
+            gap: 14px;
+        }
+
+        .social-btn {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            display: inline-grid;
+            place-items: center;
+            background: #fff;
+            color: var(--primary);
+            text-decoration: none;
+            box-shadow: 0 10px 22px rgba(65,38,68,.08);
+            transition: .2s ease;
+        }
+
+        .social-btn:hover {
+            transform: translateY(-2px);
+            color: white;
+            background: var(--primary);
+        }
+
+        footer a { color: inherit; }
+
+        @media (max-width: 900px) {
+            .hero-card { grid-template-columns: 1fr; }
+            .hero-visual { min-height: 380px; }
+            .features-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+            .download-cta { grid-template-columns: 1fr; text-align: center; }
+            .download-meta { justify-content: center; }
+            .banners-grid { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 620px) {
+            .page-shell { padding: 14px 12px 0; }
+            .topbar { align-items: flex-start; border-radius: 22px; flex-direction: column; }
+            .nav-actions { width: 100%; display: grid; grid-template-columns: 1fr 1fr; }
+            .nav-link { text-align: center; background: var(--primary-soft); }
+            .hero-card { border-radius: 26px; }
+            .hero-copy { padding: 30px 22px; }
+            .hero-actions a { width: 100%; }
+            .hero-visual { padding: 26px; min-height: 330px; }
+            .floating-note { position: relative; left: auto; bottom: auto; margin-top: 18px; max-width: none; }
+            .features-grid { grid-template-columns: 1fr; }
+            .download-cta { border-radius: 22px; }
+            .btn-download { width: 100%; justify-content: center; white-space: normal; }
+            .banner-tool { grid-template-columns: 1fr; text-align: center; justify-items: center; }
+            .banner-action { justify-content: center; }
+            .pix-section { padding: 22px 16px; }
+        }
+    </style>
+</head>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-WZWS0GSNB6"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-WZWS0GSNB6');
+</script>
+<body>
+
+    <div class="page-shell">
+        <nav class="topbar" aria-label="Navegação principal">
+            <a href="https://professormg.com.br" class="brand">
+                <span class="brand-mark"><i class="fas fa-graduation-cap"></i></span>
+                <span>ProfessorMG</span>
+            </a>
+            <div class="nav-actions">
+                <a href="#recursos" class="nav-link">Recursos</a>
+                <a href="#baixar" class="nav-link">Baixar APK</a>
+                <a href="#ferramentas" class="nav-link">Ferramentas</a>
+            </div>
+        </nav>
+
+        <header class="hero-card">
+            <div class="hero-copy">
+                <div class="kicker"><i class="fas fa-mobile-screen-button"></i> DED+ Mobile</div>
+                <h1>Diário escolar mais <span>leve, rápido e direto.</span></h1>
+                <p>Uma versão prática para acessar o Diário Escolar Digital no celular com tela cheia, menos distrações e mais agilidade na rotina do professor mineiro.</p>
+                <div class="hero-actions">
+                    <a href="DED_Mais.apk" class="btn-primary"><i class="fas fa-download"></i> Baixar APK gratuito</a>
+                    <a href="#ferramentas" class="btn-secondary"><i class="fas fa-layer-group"></i> Ver outras ferramentas</a>
+                </div>
+            </div>
+
+            <div class="hero-visual">
+                <div class="phone-frame">
+                    <img src="mockup-app.png" alt="Prévia do DED+ Mobile">
+                </div>
+                <div class="floating-note"><i class="fas fa-circle-check"></i> Projeto independente, feito para facilitar a rotina de quem usa o DED todos os dias.</div>
+            </div>
+        </header>
+
+        <main>
+            <section class="section" id="recursos">
+                <div class="section-head">
+                    <h2>O que melhora no uso diário?</h2>
+                    <p>O foco é simples: menos atrito, mais aproveitamento de tela e acesso mais rápido ao sistema.</p>
+                </div>
+
+                <div class="features-grid">
+                    <article class="feature-card">
+                        <div class="feature-icon"><i class="fas fa-expand"></i></div>
+                        <h3>Tela mais limpa</h3>
+                        <p>Uso otimizado para o celular, com foco no diário e menos distrações ao redor.</p>
+                    </article>
+                    <article class="feature-card">
+                        <div class="feature-icon"><i class="fas fa-user-check"></i></div>
+                        <h3>Login mais fluido</h3>
+                        <p>Experiência pensada para reduzir pequenos incômodos de acesso na rotina escolar.</p>
+                    </article>
+                    <article class="feature-card">
+                        <div class="feature-icon"><i class="fas fa-feather-alt"></i></div>
+                        <h3>Leve no aparelho</h3>
+                        <p>Arquivo pequeno, direto ao ponto, sem ocupar espaço desnecessário no celular.</p>
+                    </article>
+                    <article class="feature-card">
+                        <div class="feature-icon"><i class="fas fa-bolt"></i></div>
+                        <h3>Atalho rápido</h3>
+                        <p>Abra o diário pela tela de aplicativos e economize tempo nos registros do dia.</p>
+                    </article>
+                </div>
+            </section>
+
+            <section class="section download-cta" id="baixar">
+                <div>
+                    <h2>Baixe a versão atual do DED+ Mobile</h2>
+                    <p>Gratuito, independente e feito para apoiar professores da rede estadual de Minas Gerais.</p>
+                    <div class="download-meta">
+                        <span class="pill"><i class="fab fa-android"></i> Android 5.0+</span>
+                        <span class="pill"><i class="fas fa-shield-halved"></i> Projeto independente</span>
+                        <span class="pill"><i class="fas fa-code-branch"></i> Versão 36.30.05.2</span>
+                    </div>
+                </div>
+                <a href="DED_Mais.apk" class="btn-download"><i class="fas fa-download"></i> BAIXAR APK</a>
+            </section>
+
+            <section class="section" id="ferramentas">
+                <div class="section-head">
+                    <h2>Continue organizando sua rotina</h2>
+                    <p>Além do DED+ Mobile, o ProfessorMG reúne ferramentas úteis para planejamento e documentos pedagógicos.</p>
+                </div>
+
+                <div class="banners-grid">
+                    <a href="https://aulas.professormg.com.br" target="_blank" class="banner-tool banner-aulas">
+                        <div class="banner-icon"><i class="fas fa-wand-magic-sparkles"></i></div>
+                        <div class="banner-info">
+                            <h3>Gerador de Planos de Aula</h3>
+                            <p>Crie planos de aula contextualizados a partir da sua proposta e das diretrizes curriculares.</p>
+                        </div>
+                        <div class="banner-action">Acessar <i class="fas fa-arrow-right"></i></div>
+                    </a>
+
+                    <a href="https://planos.professormg.com.br" target="_blank" class="banner-tool banner-planos">
+                        <div class="banner-icon"><i class="fas fa-book-open"></i></div>
+                        <div class="banner-info">
+                            <h3>Planos de Curso SEE/MG</h3>
+                            <p>Baixe os materiais organizados por trimestre, etapa de ensino e componente curricular.</p>
+                        </div>
+                        <div class="banner-action">Ver planos <i class="fas fa-arrow-right"></i></div>
+                    </a>
+                </div>
+            </section>
+
+            <section class="section pix-section">
+                <div class="coffee-icon"><i class="fas fa-coffee"></i></div>
+                <h3>O DED+ te ajudou?</h3>
+                <p>Este projeto é mantido de forma independente. Se ele economiza seu tempo diário, considere apoiar a manutenção do servidor e dos domínios pagando um café.</p>
+
+                <div class="pix-container">
+                    <div class="pix-box" id="pixKey">00020126960014br.gov.bcb.pix01365a699962-0718-471d-b450-60d10653f7cc0234Doacao para o projeto ProfessorMG!5204000053039865802BR5925Stenio Carlos Ferreira Ga6010Campo Belo62290525STENIOCA00000641167715ASA6304622C</div>
+                    <button class="btn-copy" id="copyBtn" onclick="copyPix()">
+                        <i class="fas fa-copy"></i> Copiar Chave PIX
+                    </button>
+                </div>
+                <p style="font-size: 0.72em; margin-top: 14px; color: #999;">Contribuição totalmente voluntária para suporte da infraestrutura.</p>
+            </section>
+        </main>
+    </div>
+
+    <footer>
+        <div class="social-links">
+            <a href="https://tiktok.com/@steniostein7" target="_blank" class="social-btn" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+            <a href="https://instagram.com/steniostein7" target="_blank" class="social-btn" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="mailto:steniostein7@gmail.com" class="social-btn" aria-label="E-mail"><i class="fas fa-envelope"></i></a>
+        </div>
+        <p><i class="fas fa-balance-scale"></i> Aviso Legal: aplicativo independente. Não oficial da SEE-MG.</p>
+        <p>&copy; 2026 ProfessorMG | Techbox Academy</p>
+        <p>Desenvolvido com <i class="fas fa-heart" style="color: var(--accent);"></i> para a educação mineira.</p>
+        <p style="margin-top: 15px; font-size: 0.8em;">
+            Este é um projeto independente.
+            <a href="legal.html" style="text-decoration: underline;">Leia o Aviso Legal e Termos de Uso.</a>
+        </p>
+    </footer>
+
+    <script>
+        function copyPix() {
+            const pixKey = document.getElementById('pixKey').innerText;
+            const btn = document.getElementById('copyBtn');
+
+            navigator.clipboard.writeText(pixKey).then(() => {
+                btn.innerHTML = '<i class="fas fa-check"></i> Chave Copiada!';
+                btn.classList.add('copied');
+
+                setTimeout(() => {
+                    btn.innerHTML = '<i class="fas fa-copy"></i> Copiar Chave PIX';
+                    btn.classList.remove('copied');
+                }, 2000);
+            }).catch(err => {
+                alert('Erro ao copiar. Por favor, selecione manualmente.');
+            });
+        }
+    </script>
+
+</body>
+</html>
